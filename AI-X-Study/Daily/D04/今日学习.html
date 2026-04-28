@@ -35,12 +35,12 @@
 <h2>✅ 今日交付物</h2>
 <ul>
   <li>[x] 提示词示例 1（微积分求极限）</li>
+  <li>[x] 提示词示例 2（Python 代码 debug）</li>
+  <li>[x] 提示词示例 3（学术论文翻译）</li>
 </ul>
 
-<h2>📝 提示词示例 1</h2>
-
+<h2>📝 提示词示例 1：微积分求极限</h2>
 <p><strong>场景</strong>：需要 AI 智能体帮忙分析一道大一的微积分求极限题目，要求有答案解析、分步讲解、易错点总结，让零基础的学生能学会理解。</p>
-
 <p><strong>提示词</strong>：</p>
 <pre><code>你现在是微积分助教，帮我拆解下面这道求极限题，要求：
 1. 先写出题目，再分步讲解每一步的解题思路
@@ -49,52 +49,100 @@
 4. 语言要口语化，不要用太生硬的书面腔
 
 题目：求 lim(x→0) (sinx - x)/x³</code></pre>
-
 <p><strong>AI 输出</strong>：</p>
 <blockquote>
 <p>哈喽同学！这道极限题是大一微积分的高频考点，我给你拆解得明明白白👇</p>
 <p>🔹 题目还原：求极限 lim(x→0) (sinx - x)/x³</p>
 <p>🔹 分步解题思路：</p>
-<p>1. 第一步：先判断能不能直接代入<br>把x=0代入分子：sin0 - 0 = 0；分母：0³=0，出现了0/0型不定式，不能直接算，需要用洛必达法则或者泰勒公式。</p>
-<p>2. 第二步：用泰勒公式展开（推荐，比洛必达更稳）<br>我们知道 sin x 在x=0处的泰勒展开式：<br>sin x = x - x³/6 + o(x³)</p>
-<p>3. 第三步：代入原式化简<br>把展开式代入分子：sin x - x = (x - x³/6) - x = -x³/6<br>原式就变成了：lim(x→0) (-x³/6)/x³ = -1/6</p>
-<p>🔹 易错点提醒（很多同学都踩过的坑！）</p>
-<p>❌ 错误做法：直接用等价无穷小替换 sin x ~ x，这样会直接得到 (x-x)/x³=0，这是错的！因为等价无穷小替换只能在乘除法里用，加减法里用会丢失高阶项的信息。</p>
-<p>✅ 正确做法：加减法里用泰勒公式展开，展开到和分母同阶的项。</p>
-<p>🔹 同类题通用模板<br>遇到0/0型的三角函数/多项式极限，且是加减法形式时：<br>1. 先判断分母的阶数n<br>2. 把分子里的三角函数/对数用泰勒公式展开到n阶<br>3. 代入化简，约掉公共项，就能直接算出结果啦！</p>
+<p>1. 第一步：先判断能不能直接代入 - 出现0/0型不定式，需要用洛必达法则或泰勒公式</p>
+<p>2. 第二步：用泰勒公式展开 - sin x = x - x³/6 + o(x³)</p>
+<p>3. 第三步：代入原式化简 = -1/6</p>
+<p>🔹 易错点提醒：❌ 错误做法：直接用等价无穷小替换 sin x ~ x，这样会得到0，这是错的！✅ 正确做法：加减法里用泰勒公式展开到x³项</p>
+<p>🔹 同类题通用模板：1. 先判断分母的阶数n 2. 把分子里的三角函数用泰勒公式展开到n阶 3. 代入化简，约掉公共项</p>
 </blockquote>
-
 <p><strong>轨迹日志</strong>：</p>
 <table>
-  <thead>
-    <tr>
-      <th>维度</th>
-      <th>内容</th>
-    </tr>
-  </thead>
+  <thead><tr><th>维度</th><th>内容</th></tr></thead>
   <tbody>
-    <tr>
-      <td>清晰度</td>
-      <td>✅ 明确要求分步讲解、易错点、通用模板</td>
-    </tr>
-    <tr>
-      <td>上下文</td>
-      <td>✅ 设定了"微积分助教"角色身份</td>
-    </tr>
-    <tr>
-      <td>约束条件</td>
-      <td>✅ 4条具体要求（分步、易错点、模板、口语化）</td>
-    </tr>
-    <tr>
-      <td>期望格式</td>
-      <td>✅ 要求口语化输出</td>
-    </tr>
+    <tr><td>清晰度</td><td>✅ 明确要求分步讲解、易错点、通用模板</td></tr>
+    <tr><td>上下文</td><td>✅ 设定了"微积分助教"角色身份</td></tr>
+    <tr><td>约束条件</td><td>✅ 4条具体要求</td></tr>
+    <tr><td>期望格式</td><td>✅ 要求口语化输出</td></tr>
+  </tbody>
+</table>
+
+<h2>📝 提示词示例 2：Python 代码 Debug</h2>
+<p><strong>场景</strong>：想让 AI 智能体帮忙检查 Python 代码里是否有 bug，并给出修改后可以正常运行的代码，同时告诉错误原因。</p>
+<p><strong>提示词</strong>：</p>
+<pre><code>帮我看看这段Python代码有什么问题，要求：
+1. 先指出错误原因，用大白话解释
+2. 给出修改后的完整可运行代码
+3. 加一行注释说明修改的地方
+
+代码：
+def add_numbers(a, b):
+    result = a + b
+
+print(add_numbers(2, "3"))</code></pre>
+<p><strong>AI 输出</strong>：</p>
+<blockquote>
+<p>🔍 错误原因：</p>
+<p>1. 函数里没有用return返回结果，调用函数时拿不到计算结果，会默认返回None</p>
+<p>2. 你把数字2和字符串"3"相加，Python不支持数字和字符串直接相加，会报TypeError错误</p>
+<p>修改后的代码：</p>
+<pre><code>def add_numbers(a, b):
+    # 把输入的参数都转成整数，避免类型不匹配的问题
+    result = int(a) + int(b)
+    # 加上return，把计算结果返回给调用者
+    return result
+
+print(add_numbers(2, "3"))  # 输出: 5</code></pre>
+</blockquote>
+<p><strong>轨迹日志</strong>：</p>
+<table>
+  <thead><tr><th>维度</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>清晰度</td><td>✅ 分三条要求清晰列出</td></tr>
+    <tr><td>上下文</td><td>✅ 提供具体代码片段作为上下文</td></tr>
+    <tr><td>约束条件</td><td>✅ 要求解释+代码+注释三点</td></tr>
+    <tr><td>期望格式</td><td>✅ 要求大白话解释，代码要完整可运行</td></tr>
+  </tbody>
+</table>
+
+<h2>📝 提示词示例 3：学术论文翻译</h2>
+<p><strong>场景</strong>：从一篇关于 AI+X 教育范式、共生智能、AI 智能体的英文学术论文中，自动提取最核心、最有研究价值的一段，进行精准学术翻译，并标注关键术语。</p>
+<p><strong>提示词</strong>：</p>
+<pre><code>你是AI智能体与教育领域的学术翻译助手。请从我提供的英文论文中，自动筛选论文最核心、最有价值的一段，只翻译这一段。
+要求：
+1. 译文符合中文学术规范，严谨通顺。
+2. 标出本段3–5个核心专业术语并简要解释。
+3. 用一句话概括本段核心观点。</code></pre>
+<p><strong>AI 输出</strong>：</p>
+<blockquote>
+<p><strong>原文</strong>：Symbiotic Intelligence can be defined as a collaborative cognitive ecosystem in which human and artificial intelligences mutually enhance each other to achieve goals neither could attain alone...</p>
+<p><strong>精准中文翻译</strong>：共生智能可被定义为一种协作式认知生态：人类智能与人工智能相互增强，共同完成任何一方单独无法实现的目标。它是一种协同创造范式，而非竞争范式...</p>
+<p><strong>核心术语解释</strong>：</p>
+<ul>
+<li>Symbiotic Intelligence 共生智能：人机双向增强、互补协作的新型智能形态</li>
+<li>Cognitive ecosystem 认知生态：由人与AI共同构成的协同思考与决策系统</li>
+<li>Pattern recognition 模式识别：AI从大量数据中快速发现规律的核心能力</li>
+</ul>
+<p><strong>一句话核心观点</strong>：本段定义了共生智能，明确人机不是竞争而是互补协作，通过合理分工形成更强大的统一认知单元。</p>
+</blockquote>
+<p><strong>轨迹日志</strong>：</p>
+<table>
+  <thead><tr><th>维度</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>清晰度</td><td>✅ 三条要求明确分工（翻译、术语、总结）</td></tr>
+    <tr><td>上下文</td><td>✅ 设定了学术翻译助手角色</td></tr>
+    <tr><td>约束条件</td><td>✅ 规定术语数量（3-5个）、语言风格（学术规范）</td></tr>
+    <tr><td>期望格式</td><td>✅ 分段输出（译文+术语+观点）</td></tr>
   </tbody>
 </table>
 
 <h2>💭 反思</h2>
 <blockquote>
-  <p><strong>提示工程学习总结</strong>：通过本次练习，学会了如何通过设定角色、明确任务、分点约束来获得高质量的 AI 输出。好的提示词需要包含：角色设定 + 具体任务 + 输出格式要求 + 语言风格约束。</p>
+  <p><strong>提示工程学习总结</strong>：通过三个不同场景的练习，深刻体会到好提示词的核心要素：1）角色设定帮助 AI 理解身份；2）具体任务描述清晰目标；3）约束条件明确输出范围；4）格式要求便于阅读使用。提示词工程是人与 AI 高效协作的关键技能。</p>
 </blockquote>
 
 </body>
