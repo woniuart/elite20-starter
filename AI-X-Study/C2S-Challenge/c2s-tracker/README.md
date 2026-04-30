@@ -10,9 +10,11 @@ c2s-tracker/
 │   ├── 01-understanding.json
 │   ├── 02-kstar.json
 │   ├── 03-personal-grounding.json
-│   └── 04-aar.json
-├── prompts/                 # AI 检查清单生成 prompt
+│   └── 04-aar.json           # v0.2 新增执行轨迹字段
+├── prompts/                  # AI 检查清单生成 prompt
 │   └── checklist-generator.md
+├── deploy_to_notion.py       # Notion API 部署脚本（需配置）
+├── NOTION-DEPLOY-GUIDE.md    # 手动部署指南
 └── README.md
 ```
 
@@ -55,3 +57,5 @@ c2s-tracker/
   - 协作质量：评估 AI 协作的帮助程度
   - 对话时间：记录协作时间戳
 - ✅ 检查清单新增 3 项协作轨迹相关检查项
+- ✅ 新增 `NOTION-DEPLOY-GUIDE.md` 手动部署指南
+- ✅ 新增 `deploy_to_notion.py` API 部署脚本
