@@ -22,6 +22,32 @@
       "type": "text",
       "description": "你与 AI 的交互（提示词 + AI 输出）"
     },
+    "AI模型": {
+      "type": "select",
+      "options": ["ChatGPT-4o", "ChatGPT-4o-mini", "Claude 3.5", "Claude 3", "Gemini 2.0", "其他"],
+      "description": "使用的 AI 模型"
+    },
+    "对话轮次": {
+      "type": "number",
+      "description": "本次协作的对话轮次（用户→AI 算1轮）"
+    },
+    "关键提示词": {
+      "type": "text",
+      "description": "本次协作中最重要的 1-2 条提示词"
+    },
+    "AI输出摘要": {
+      "type": "text",
+      "description": "AI 输出的核心结论或关键信息（1-3句）"
+    },
+    "协作质量": {
+      "type": "select",
+      "options": ["低", "中", "高", "优秀"],
+      "description": "本次 AI 协作的帮助程度"
+    },
+    "对话时间": {
+      "type": "date",
+      "description": "本次协作的时间"
+    },
     "改进计划": {
       "type": "text",
       "description": "具体的下一步行动"
@@ -48,6 +74,9 @@
     "AI 协作记录是否能证明'这是你亲身经历的'？",
     "改进计划是否具体可执行？",
     "读完后是否能感受到'这 4 天真实发生了什么'？",
-    "是否避免了 AI 凭空生成的通用性描述？"
+    "是否避免了 AI 凭空生成的通用性描述？",
+    "协作轨迹是否记录了 AI 模型和对话轮次？",
+    "关键提示词是否已记录（便于复现）？",
+    "协作质量评估是否真实反映 AI 帮助程度？"
   ]
 }
